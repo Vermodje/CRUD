@@ -3,17 +3,5 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd"
          version="4.0">
-    <!--<servlet>
-        <servlet-name>NewServlet</servlet-name>
-        <servlet-class>NewServlet</servlet-class>
-    </servlet>!-->
-   <servlet>
-        <servlet-name>Insert-user</servlet-name>
-        <jsp-file>/WEB-INF/insert-user.jsp</jsp-file>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>Insert-user</servlet-name>
-        <url-pattern>/insert</url-pattern>
-    </servlet-mapping>
 
 </web-app>

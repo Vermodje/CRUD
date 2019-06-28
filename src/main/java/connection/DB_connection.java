@@ -11,7 +11,8 @@ public class DB_connection {
     public DB_connection() {
         this.connection = getMySqlConnection();
     }
-    private static Connection getMySqlConnection(){
+
+    private static Connection getMySqlConnection() {
         try {
             DriverManager.registerDriver((Driver) Class.forName("com.mysql.jdbc.Driver").newInstance());
 
@@ -35,5 +36,5 @@ public class DB_connection {
     public Connection getConnection() {
         return connection;
     }
-}
 
+}
