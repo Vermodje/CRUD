@@ -1,0 +1,7 @@
+com\example\projects\servlet\DeleteServlet.class
+com\example\projects\servlet\UpdateServlet.class
+com\example\projects\servlet\EditServlet.class
+com\example\projects\user\User.class
+com\example\projects\servlet\InsertServlet.class
+com\example\projects\connection\DB_connection.class
+com\example\projects\dao\UserDao.class

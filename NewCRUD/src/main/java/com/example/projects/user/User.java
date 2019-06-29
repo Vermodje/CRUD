@@ -1,5 +1,9 @@
 package com.example.projects.user;
-import com.sun.istack.internal.NotNull;
+
+
+
+
+import org.jetbrains.annotations.NotNull;
 
 import javax.persistence.*;
 
@@ -19,14 +23,16 @@ public class User {
     @Column(name = "login")
     @NotNull
     private String login;
-    public User(){
+    public User() {
 
     }
+
     public User(int id, String name, String password, String login) {
         this(name, password, login);
         this.setId(id);
     }
-    public User(String name, String password, String login){
+
+    public User(String name, String password, String login) {
         this.setName(name);
         this.setPassword(password);
         this.setLogin(login);
