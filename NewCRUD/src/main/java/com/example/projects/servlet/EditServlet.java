@@ -1,7 +1,7 @@
 package com.example.projects.servlet;
 
-import com.example.projects.dao.UserDao;
-import com.example.projects.user.User;
+import com.example.projects.service.UserService;
+import com.example.projects.service.UserServiceImpl;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -13,13 +13,11 @@ import java.io.IOException;
 
 @WebServlet(urlPatterns = "/edit")
 public class EditServlet extends HttpServlet {
-
+    private UserService service = UserServiceImpl.getService();
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         int id = Integer.parseInt(req.getParameter("id"));
-        UserDao userDao = new UserDao();
-        User user = userDao.getUser(id);
-        req.setAttribute("user", user);
+        req.setAttribute("user",  service.get(id));
         RequestDispatcher dispatcher = req.getRequestDispatcher("/edit-user.jsp");
         dispatcher.forward(req, resp);
 

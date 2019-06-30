@@ -1,4 +1,4 @@
-package com.example.projects.user;
+package com.example.projects.model;
 
 
 

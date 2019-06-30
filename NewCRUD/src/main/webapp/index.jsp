@@ -1,8 +1,10 @@
-<%@ page import="com.example.projects.user.User" %>
-<%@ page import="com.example.projects.dao.UserDao" %>
+<%@ page import="com.example.projects.model.User" %>
+<%@ page import="com.example.projects.dao.UserDaoImpl" %>
 <%@ page import="java.util.List" %>
 <%@ page import="java.util.ListIterator" %>
-<%@ page import="java.util.ArrayList" %><%--
+<%@ page import="java.util.ArrayList" %>
+<%@ page import="com.example.projects.service.UserService" %>
+<%@ page import="com.example.projects.service.UserServiceImpl" %><%--
   Created by IntelliJ IDEA.
   User: Вячеслав
   Date: 29.06.2019
@@ -23,9 +25,9 @@
 </form>
 <div class="container">
     <%
-        UserDao userDao = new UserDao();
+        UserService service = UserServiceImpl.getService();
         List<User>list = new ArrayList<>();
-        list = userDao.getAllUsers();
+        list = service.getAll();
         ListIterator<User> iterator = list.listIterator();
 
     %>

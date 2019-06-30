@@ -5,12 +5,18 @@ import java.sql.Driver;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
-public class DB_connection {
+public class DBconnection {
     private final Connection connection;
-
-    public DB_connection() {
+    private static DBconnection dBconnection;
+    private DBconnection(){
         this.connection = getMySqlConnection();
     }
+   public static synchronized DBconnection getdBconnection(){
+       if(dBconnection == null){
+           dBconnection = new DBconnection();
+       }
+       return dBconnection;
+   }
 
     private static Connection getMySqlConnection() {
         try {
