@@ -22,17 +22,18 @@ public class DBconnection {
         try {
             DriverManager.registerDriver((Driver) Class.forName("com.mysql.jdbc.Driver").newInstance());
 
-            StringBuilder url = new StringBuilder();
-
-            url.
-                    append("jdbc:mysql://").        //db type
-                    append("localhost:").           //host name
-                    append("3306/").                //port
-                    append("db_Example?").          //db name
-                    append("user=root&").          //login
-                    append("password=root");       //password
-
-            return DriverManager.getConnection(url.toString());
+            String url = "jdbc:mysql://" +
+                    //db type
+                    "localhost:" +
+                    //host name
+                    "3306/" +
+                    //port
+                    "db_Example?" +
+                    //db name
+                    "user=root&" +
+                    //login
+                    "password=root";//password
+            return DriverManager.getConnection(url);
         } catch (SQLException | InstantiationException | IllegalAccessException | ClassNotFoundException e) {
             e.printStackTrace();
         }
