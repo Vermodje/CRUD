@@ -44,7 +44,7 @@ public class UserDaoImpl implements UserDao {
             PreparedStatement preparedStatement = connection.prepareStatement("select * from users");
             ResultSet resultSet = preparedStatement.executeQuery();
             while (resultSet.next()){
-                int id = resultSet.getInt("id");
+                Long id = resultSet.getLong("id");
                 String name = resultSet.getString("name");
                 String password = resultSet.getString("password");
                 String login = resultSet.getString("login");
@@ -58,10 +58,10 @@ public class UserDaoImpl implements UserDao {
         return list;
     }
     @Override
-    public User getUser(int id){
+    public User getUser(Long id){
         try {
             PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM users WHERE id = ?");
-            preparedStatement.setInt(1, id);
+            preparedStatement.setLong(1, id);
             ResultSet resultSet = preparedStatement.executeQuery();
             if(resultSet.next()){
                 String name = resultSet.getString("name");
@@ -83,7 +83,7 @@ public class UserDaoImpl implements UserDao {
             preparedStatement.setString(1, user.getName());
             preparedStatement.setString(2, user.getPassword());
             preparedStatement.setString(3, user.getLogin());
-            preparedStatement.setInt(4, user.getId());
+            preparedStatement.setLong(4, user.getId());
             preparedStatement.executeUpdate();
             preparedStatement.close();
         } catch (SQLException e) {
@@ -91,13 +91,10 @@ public class UserDaoImpl implements UserDao {
         }
     }
     @Override
-    public void deleteUser(int id){
+    public void deleteUser(Long id){
         try {
-            if(connection.isClosed()){
-                connection  = dbConnection.getConnection();
-            }
             PreparedStatement preparedStatement = connection.prepareStatement("DELETE FROM users where id = ?");
-            preparedStatement.setInt(1, id);
+            preparedStatement.setLong(1, id);
             preparedStatement.executeUpdate();
             preparedStatement.close();
         } catch (SQLException e) {
@@ -105,5 +102,4 @@ public class UserDaoImpl implements UserDao {
         }
 
     }
-
 }

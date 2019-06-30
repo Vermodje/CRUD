@@ -16,11 +16,15 @@ public class EditServlet extends HttpServlet {
     private UserService service = UserServiceImpl.getService();
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        int id = Integer.parseInt(req.getParameter("id"));
-        req.setAttribute("user",  service.get(id));
-        RequestDispatcher dispatcher = req.getRequestDispatcher("/edit-user.jsp");
-        dispatcher.forward(req, resp);
-
+        try {
+            Long id = Long.valueOf(req.getParameter("id"));
+            req.setAttribute("user",  service.get(id));
+            RequestDispatcher dispatcher = req.getRequestDispatcher("/edit-user.jsp");
+            dispatcher.forward(req, resp);
+        } catch (NumberFormatException e){
+            e.printStackTrace();
+            resp.sendRedirect("/");
+        }
     }
 
     @Override

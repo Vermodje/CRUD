@@ -15,7 +15,7 @@ public class DeleteServlet extends HttpServlet {
     private UserService service = UserServiceImpl.getService();
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        int id = Integer.parseInt(req.getParameter("id"));
+        Long id = Long.valueOf(req.getParameter("id"));
         service.delete(id);
         resp.sendRedirect("/index.jsp");
     }
