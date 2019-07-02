@@ -1,14 +1,18 @@
 package com.example.projects.service;
 
 import com.example.projects.dao.UserDao;
-import com.example.projects.dao.UserDaoImpl;
+import com.example.projects.dao.UserHibernateDaoImpl;
+import com.example.projects.dao.UserJdbcDaoImpl;
 import com.example.projects.model.User;
 
 import java.util.List;
 
 public class UserServiceImpl implements UserService {
     private  static UserService service;
-    private UserDao dao = new UserDaoImpl();
+    // FOR JDBC
+    //private UserDao dao = new UserJdbcDaoImpl();
+    // FOR Hibernate
+    private UserDao dao = new UserHibernateDaoImpl();
     private UserServiceImpl(){
     }
     public static synchronized UserService getService(){
@@ -20,7 +24,6 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void add(User user) {
-        dao.createTable();
         dao.insertUser(user);
     }
 

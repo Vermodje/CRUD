@@ -1,5 +1,4 @@
 <%@ page import="com.example.projects.model.User" %>
-<%@ page import="com.example.projects.dao.UserDaoImpl" %>
 <%@ page import="java.util.List" %>
 <%@ page import="java.util.ListIterator" %>
 <%@ page import="java.util.ArrayList" %>

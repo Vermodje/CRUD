@@ -3,7 +3,9 @@ com\example\projects\servlet\DeleteServlet.class
 com\example\projects\servlet\UpdateServlet.class
 com\example\projects\servlet\EditServlet.class
 com\example\projects\servlet\InsertServlet.class
-com\example\projects\dao\UserDaoImpl.class
+com\example\projects\util\Util.class
+com\example\projects\dao\UserJdbcDaoImpl.class
+com\example\projects\dao\UserHibernateDaoImpl.class
 com\example\projects\model\User.class
 com\example\projects\service\UserService.class
 com\example\projects\service\UserServiceImpl.class
