@@ -17,7 +17,7 @@ public class UserDaoFactory {
     private UserDao dao;
 
     private UserDaoFactory() {
-        dao = createDAO(readProperties("E:/Users/Kancnelson/Desktop/Git/CRUD/NewCRUD/src/main/java/resources/config.properties"));
+        dao = createDAO(readProperties("config.properties"));
     }
 
     public static synchronized UserDao getUserDAO() {
@@ -28,7 +28,7 @@ public class UserDaoFactory {
     }
 
     private static String readProperties(String path) {
-        try (InputStream in = new FileInputStream(path)) {
+        try (InputStream in = UserDaoFactory.class.getClassLoader().getResourceAsStream(path)) {
             properties.load(in);
         } catch (IOException e) {
             e.printStackTrace();
