@@ -1,5 +1,6 @@
 package com.example.projects.service;
 
+import com.example.projects.dao.UserDao;
 import com.example.projects.model.User;
 
 import java.util.List;
@@ -7,11 +8,13 @@ import java.util.List;
 public interface UserService {
     void add(User user);
 
-    List<User> getAll();
+    List getAllUsers();
 
     void edit(User user);
 
     void delete(Long id);
 
-    User get(Long id);
+    User getUserById(Long id);
+
+    UserDao getDAO();
 }

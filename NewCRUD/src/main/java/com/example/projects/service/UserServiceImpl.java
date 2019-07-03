@@ -1,20 +1,14 @@
 package com.example.projects.service;
 
 import com.example.projects.dao.UserDao;
-import com.example.projects.dao.UserHibernateDaoImpl;
-import com.example.projects.dao.UserJdbcDaoImpl;
+import com.example.projects.dao.factory.UserDaoFactory;
 import com.example.projects.model.User;
 
 import java.util.List;
 
 public class UserServiceImpl implements UserService {
-    private  static UserService service;
-    // FOR JDBC
-    //private UserDao dao = new UserJdbcDaoImpl();
-    // FOR Hibernate
-    private UserDao dao = new UserHibernateDaoImpl();
-    private UserServiceImpl(){
-    }
+    private UserDao dao = UserDaoFactory.getUserDAO();
+    private static UserService service;
     public static synchronized UserService getService(){
         if(service == null){
             service = new UserServiceImpl();
@@ -28,7 +22,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public List<User> getAll() {
+    public List getAllUsers() {
         return dao.getAllUsers();
     }
 
@@ -43,7 +37,12 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User get(Long id) {
-        return dao.getUser(id);
+    public User getUserById(Long id) {
+        return dao.getUserById(id);
+    }
+
+    @Override
+    public UserDao getDAO() {
+        return dao;
     }
 }

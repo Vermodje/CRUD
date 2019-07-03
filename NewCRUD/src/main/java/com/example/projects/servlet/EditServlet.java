@@ -18,12 +18,12 @@ public class EditServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         try {
             Long id = Long.valueOf(req.getParameter("id"));
-            req.setAttribute("user",  service.get(id));
+            req.setAttribute("user",  service.getUserById(id));
             RequestDispatcher dispatcher = req.getRequestDispatcher("/edit-user.jsp");
             dispatcher.forward(req, resp);
         } catch (NumberFormatException e){
             e.printStackTrace();
-            resp.sendRedirect("/");
+            resp.sendRedirect("/users");
         }
     }
 

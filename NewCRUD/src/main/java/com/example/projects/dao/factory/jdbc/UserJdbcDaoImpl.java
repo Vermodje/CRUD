@@ -1,7 +1,7 @@
-package com.example.projects.dao;
+package com.example.projects.dao.factory.jdbc;
 
-import com.example.projects.connection.DBconnection;
 import com.example.projects.dao.UserDao;
+import com.example.projects.hepler.DBHelper;
 import com.example.projects.model.User;
 
 import java.sql.*;
@@ -9,13 +9,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class UserJdbcDaoImpl implements UserDao {
-    private DBconnection dbConnection = DBconnection.getdBconnection();
-    private Connection connection = dbConnection.getConnection();
     private User user;
-    public UserJdbcDaoImpl(){
-    }
+    private Connection connection = DBHelper.getConnection();
 
-    private void createTable(){
+    private void createTable() {
         try {
             Statement statement = connection.createStatement();
             statement.execute("create table if not exists users (id bigint auto_increment, name varchar(256), password varchar(256), login varchar(256), primary key (id))");
@@ -24,11 +21,12 @@ public class UserJdbcDaoImpl implements UserDao {
             e.printStackTrace();
         }
     }
+
     @Override
-    public void insertUser(User user){
+    public void insertUser(User user) {
         this.createTable();
         try {
-            PreparedStatement preparedStatement = connection.prepareStatement( "insert into users(name, password, login) values (?,?,?)");
+            PreparedStatement preparedStatement = connection.prepareStatement("insert into users(name, password, login) values (?,?,?)");
             preparedStatement.setString(1, user.getName());
             preparedStatement.setString(2, user.getPassword());
             preparedStatement.setString(3, user.getLogin());
@@ -39,13 +37,14 @@ public class UserJdbcDaoImpl implements UserDao {
             e.printStackTrace();
         }
     }
+
     @Override
-    public List<User> getAllUsers(){
+    public List getAllUsers() {
         List<User> list = new ArrayList<>();
         try {
             PreparedStatement preparedStatement = connection.prepareStatement("select * from users");
             ResultSet resultSet = preparedStatement.executeQuery();
-            while (resultSet.next()){
+            while (resultSet.next()) {
                 Long id = resultSet.getLong("id");
                 String name = resultSet.getString("name");
                 String password = resultSet.getString("password");
@@ -59,13 +58,14 @@ public class UserJdbcDaoImpl implements UserDao {
         }
         return list;
     }
+
     @Override
-    public User getUser(Long id){
+    public User getUserById(Long id) {
         try {
             PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM users WHERE id = ?");
             preparedStatement.setLong(1, id);
             ResultSet resultSet = preparedStatement.executeQuery();
-            if(resultSet.next()){
+            if (resultSet.next()) {
                 String name = resultSet.getString("name");
                 String password = resultSet.getString("password");
                 String login = resultSet.getString("login");
@@ -78,8 +78,9 @@ public class UserJdbcDaoImpl implements UserDao {
         }
         return user;
     }
+
     @Override
-    public void updateUser(User user){
+    public void updateUser(User user) {
         try {
             PreparedStatement preparedStatement = connection.prepareStatement("UPDATE users set name = ?, password = ?, login = ? WHERE id = ?");
             preparedStatement.setString(1, user.getName());
@@ -92,8 +93,9 @@ public class UserJdbcDaoImpl implements UserDao {
             e.printStackTrace();
         }
     }
+
     @Override
-    public void deleteUser(Long id){
+    public void deleteUser(Long id) {
         try {
             PreparedStatement preparedStatement = connection.prepareStatement("DELETE FROM users where id = ?");
             preparedStatement.setLong(1, id);
@@ -103,5 +105,10 @@ public class UserJdbcDaoImpl implements UserDao {
             e.printStackTrace();
         }
 
+    }
+
+    @Override
+    public String toString() {
+        return "You are using JDBC";
     }
 }

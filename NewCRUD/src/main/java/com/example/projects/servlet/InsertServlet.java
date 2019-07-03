@@ -25,6 +25,6 @@ public class InsertServlet extends HttpServlet {
         String password = req.getParameter("password");
         String login = req.getParameter("login");
         service.add(new User(name, password, login));
-        resp.sendRedirect("/");
+        resp.sendRedirect("/users");
     }
 }

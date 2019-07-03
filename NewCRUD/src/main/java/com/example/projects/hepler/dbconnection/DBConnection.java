@@ -1,24 +1,26 @@
-package com.example.projects.connection;
+package com.example.projects.hepler.dbconnection;
 
 import java.sql.Connection;
 import java.sql.Driver;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
-public class DBconnection {
+public class DBConnection {
     private final Connection connection;
-    private static DBconnection dBconnection;
-    private DBconnection(){
-        this.connection = getMySqlConnection();
-    }
-   public static synchronized DBconnection getdBconnection(){
-       if(dBconnection == null){
-           dBconnection = new DBconnection();
-       }
-       return dBconnection;
-   }
+    private static DBConnection dBconnection;
 
-    private static Connection getMySqlConnection() {
+    private DBConnection() {
+        connection = setConnection();
+    }
+
+    public static synchronized Connection getConnection() {
+        if (dBconnection == null) {
+            dBconnection = new DBConnection();
+        }
+        return dBconnection.getMySqlConnection();
+    }
+
+    private static Connection setConnection() {
         try {
             DriverManager.registerDriver((Driver) Class.forName("com.mysql.jdbc.Driver").newInstance());
 
@@ -39,9 +41,9 @@ public class DBconnection {
         }
         return null;
     }
-
-    public Connection getConnection() {
+    private Connection getMySqlConnection(){
         return connection;
     }
+
 
 }

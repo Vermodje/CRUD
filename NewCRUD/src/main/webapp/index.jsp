@@ -10,6 +10,7 @@
   Time: 14:03
   To change this template use File | Settings | File Templates.
 --%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -23,13 +24,7 @@
     <input type="submit" value="Insert">
 </form>
 <div class="container">
-    <%
-        UserService service = UserServiceImpl.getService();
-        List<User>list = new ArrayList<>();
-        list = service.getAll();
-        ListIterator<User> iterator = list.listIterator();
 
-    %>
     <table border="1"  cellpadding="5">
         <caption style="font-size: 40px;">All Users</caption>
         <tr>
@@ -40,28 +35,20 @@
             <th>Actions</th>
         </tr>
 
-
-        <%
-            while (iterator.hasNext()){
-                User user = iterator.next();
-        %>
+        <c:forEach var="user" items="${users}">
         <tr>
-            <td style="text-align: center"><%=user.getId()%></td>
-            <td style="text-align: center"><%=user.getName()%></td>
-            <td style="text-align: center"><%=user.getPassword()%></td>
-            <td style="text-align: center"><%=user.getLogin()%></td>
+            <td style="text-align: center"><c:out value="${user.id}"></c:out> </td>
+            <td style="text-align: center"><c:out value="${user.name}"></c:out></td>
+            <td style="text-align: center"><c:out value="${user.password}"></c:out></td>
+            <td style="text-align: center"><c:out value="${user.login}"></c:out></td>
             <td>
-                <a href="/edit?id=<%=user.getId()%>">Edit</a>
-                <a href="/delete?id=<%=user.getId()%>">Delete</a>
+                <a href="/edit?id=<c:out value="${user.id}"></c:out>">Edit</a>
+                <a href="/delete?id=<c:out value="${user.id}"></c:out>">Delete</a>
             </td>
         </tr>
-        <%
-            }
-
-        %>
-
-
+        </c:forEach>
     </table>
+    <span><c:out value="${dao.toString()}"></c:out></span>
 </div>
 </body>
 

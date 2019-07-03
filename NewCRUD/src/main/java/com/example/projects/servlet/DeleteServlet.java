@@ -17,7 +17,7 @@ public class DeleteServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         Long id = Long.valueOf(req.getParameter("id"));
         service.delete(id);
-        resp.sendRedirect("/index.jsp");
+        resp.sendRedirect("/users");
     }
 
     @Override
