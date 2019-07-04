@@ -11,7 +11,7 @@ public interface UserService {
 
     List getAllUsers();
 
-    void edit(User user);
+    void edit(User user) throws SQLException;
 
     void delete(Long id);
 

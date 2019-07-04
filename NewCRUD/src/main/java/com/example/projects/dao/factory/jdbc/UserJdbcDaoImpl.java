@@ -107,8 +107,7 @@ public class UserJdbcDaoImpl implements UserDao {
     }
 
     @Override
-    public void updateUser(User user) {
-        try {
+    public void updateUser(User user) throws SQLException {
             PreparedStatement preparedStatement = connection.prepareStatement("UPDATE users set name = ?, password = ?, login = ? WHERE id = ?");
             preparedStatement.setString(1, user.getName());
             preparedStatement.setString(2, user.getPassword());
@@ -116,9 +115,6 @@ public class UserJdbcDaoImpl implements UserDao {
             preparedStatement.setLong(4, user.getId());
             preparedStatement.executeUpdate();
             preparedStatement.close();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
     }
 
     @Override

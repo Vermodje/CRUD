@@ -15,7 +15,7 @@ import java.util.List;
 
 @WebServlet(urlPatterns = "/users")
 public class UserServlet extends HttpServlet {
-    private UserService service = UserServiceImpl.getService();
+    private UserService service = UserServiceImpl.getInstance();
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

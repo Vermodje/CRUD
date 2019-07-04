@@ -15,7 +15,7 @@ import java.sql.SQLException;
 
 @WebServlet(urlPatterns = "/insert")
 public class InsertServlet extends HttpServlet {
-    private UserService service = UserServiceImpl.getService();
+    private UserService service = UserServiceImpl.getInstance();
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
        super.doPost(req, resp);

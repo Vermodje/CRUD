@@ -28,7 +28,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void edit(User user) {
+    public void edit(User user) throws SQLException {
         dao.updateUser(user);
     }
 
