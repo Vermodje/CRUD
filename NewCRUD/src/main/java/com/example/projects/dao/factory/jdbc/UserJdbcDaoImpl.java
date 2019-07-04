@@ -15,7 +15,8 @@ public class UserJdbcDaoImpl implements UserDao {
     private void createTable() {
         try {
             Statement statement = connection.createStatement();
-            statement.execute("create table if not exists users (id bigint auto_increment, name varchar(256), password varchar(256), login varchar(256), primary key (id))");
+            statement.execute("create table if not exists users (id bigint auto_increment, name varchar(45), password varchar(45), login varchar(45), role varchar (45), primary key (id), unique index login_unique (login ASC)) DEFAULT CHARACTER SET = utf8\n" +
+                    "COLLATE = utf8_general_ci;");
             statement.close();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -23,19 +24,22 @@ public class UserJdbcDaoImpl implements UserDao {
     }
 
     @Override
-    public void insertUser(User user) {
+    public void insertUser(User user) throws SQLException {
         this.createTable();
-        try {
-            PreparedStatement preparedStatement = connection.prepareStatement("insert into users(name, password, login) values (?,?,?)");
+            PreparedStatement preparedStatement = connection.prepareStatement("insert into users(name, password, login, role) values (?,?,?,?)");
             preparedStatement.setString(1, user.getName());
             preparedStatement.setString(2, user.getPassword());
             preparedStatement.setString(3, user.getLogin());
+            if(this.getUserByLogin("admin")== null){
+                preparedStatement.setString(4, "admin");
+            }
+            else {
+                preparedStatement.setString(4, "user");
+            }
             preparedStatement.executeUpdate();
             preparedStatement.close();
 
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+
     }
 
     @Override
@@ -49,7 +53,8 @@ public class UserJdbcDaoImpl implements UserDao {
                 String name = resultSet.getString("name");
                 String password = resultSet.getString("password");
                 String login = resultSet.getString("login");
-                list.add(new User(id, name, password, login));
+                String role = resultSet.getString("role");
+                list.add(new User(id, name, password, login, role));
             }
             resultSet.close();
             preparedStatement.close();
@@ -69,7 +74,29 @@ public class UserJdbcDaoImpl implements UserDao {
                 String name = resultSet.getString("name");
                 String password = resultSet.getString("password");
                 String login = resultSet.getString("login");
-                user = new User(id, name, password, login);
+                String role = resultSet.getString("role");
+                user = new User(id, name, password, login, role);
+            }
+            resultSet.close();
+            preparedStatement.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return user;
+    }
+
+    @Override
+    public User getUserByLogin(String login) {
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement("select * from users WHERE login = ?");
+            preparedStatement.setString(1, login);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            if (resultSet.next()) {
+                Long id = resultSet.getLong("id");
+                String name = resultSet.getString("name");
+                String password = resultSet.getString("password");
+                String role = resultSet.getString("role");
+                user = new User(id, name, password, login, role);
             }
             resultSet.close();
             preparedStatement.close();

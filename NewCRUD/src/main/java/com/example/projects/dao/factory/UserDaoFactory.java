@@ -3,10 +3,7 @@ package com.example.projects.dao.factory;
 
 import com.example.projects.dao.UserDao;
 import com.example.projects.dao.factory.hibernate.UserHibernateDaoImpl;
-import com.example.projects.dao.factory.jdbc.UserJdbcDaoImpl;
-import org.hibernate.Session;
-
-import java.io.FileInputStream;
+import com.example.projects.dao.factory.jdbc.UserJdbcDaoImpl;;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;

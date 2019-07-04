@@ -26,7 +26,7 @@ public class UpdateServlet extends HttpServlet {
         String name = req.getParameter("name");
         String password = req.getParameter("password");
         String login = req.getParameter("login");
-        service.edit(new User(id, name, password, login));
+        service.edit(new User(id, name, password, login, "admin"));
         resp.sendRedirect("/users");
     }
 }

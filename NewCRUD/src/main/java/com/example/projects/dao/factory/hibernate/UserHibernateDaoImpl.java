@@ -11,7 +11,7 @@ import java.util.List;
 
 
 public class UserHibernateDaoImpl implements UserDao {
-    private Session session = DBHelper.getSession();
+    private Session session = DBHelper.getSessionFactory().openSession();
 
     @Override
     public void insertUser(User user) {
@@ -29,6 +29,11 @@ public class UserHibernateDaoImpl implements UserDao {
     @Override
     public User getUserById(Long id) {
         return (User) session.load(User.class, id);
+    }
+
+    @Override
+    public User getUserByLogin(String login) {
+        return (User) session.load(User.class, login);
     }
 
     @Override

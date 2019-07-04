@@ -4,12 +4,13 @@ import com.example.projects.dao.UserDao;
 import com.example.projects.dao.factory.UserDaoFactory;
 import com.example.projects.model.User;
 
+import java.sql.SQLException;
 import java.util.List;
 
 public class UserServiceImpl implements UserService {
     private UserDao dao = UserDaoFactory.getUserDAO();
     private static UserService service;
-    public static synchronized UserService getService(){
+    public static  UserService getService(){
         if(service == null){
             service = new UserServiceImpl();
         }
@@ -17,7 +18,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void add(User user) {
+    public void add(User user) throws SQLException {
         dao.insertUser(user);
     }
 
