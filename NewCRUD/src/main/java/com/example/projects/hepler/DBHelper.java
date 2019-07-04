@@ -1,7 +1,6 @@
 package com.example.projects.hepler;
 
 import com.example.projects.model.User;
-import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
@@ -13,29 +12,17 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class DBHelper {
+    private static DBHelper ourInstance = new DBHelper();
     private final Connection connection;
     private final SessionFactory sessionFactory;
-    private static DBHelper dbHelper;
-    private DBHelper(){
+    public static DBHelper getInstance() {
+        return ourInstance;
+    }
+
+    private DBHelper() {
         connection = setConnection();
         sessionFactory = createSessionFactory(setConfiguration());
     }
-
-    public static  Connection getConnection(){
-        if(dbHelper == null){
-            dbHelper = new DBHelper();
-        }
-        return dbHelper.connection;
-    }
-
-
-    public static synchronized SessionFactory getSessionFactory(){
-        if(dbHelper == null){
-            dbHelper = new DBHelper();
-        }
-        return dbHelper.sessionFactory;
-    }
-
     private SessionFactory createSessionFactory(Configuration configuration){
         StandardServiceRegistryBuilder builder = new StandardServiceRegistryBuilder();
         builder.applySettings(configuration.getProperties());
@@ -75,7 +62,11 @@ public class DBHelper {
         configuration.setProperty("hibernate.hbm2ddl.auto", "update");
         return configuration;
     }
-
-
+    public SessionFactory getSessionFactory(){
+        return this.sessionFactory;
+    }
+    public Connection getConnection(){
+        return this.connection;
+    }
 
 }

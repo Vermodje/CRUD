@@ -11,7 +11,7 @@ import java.util.List;
 
 
 public class UserHibernateDaoImpl implements UserDao {
-    private Session session = DBHelper.getSessionFactory().openSession();
+    private Session session = DBHelper.getInstance().getSessionFactory().openSession();
 
     @Override
     public void insertUser(User user) {

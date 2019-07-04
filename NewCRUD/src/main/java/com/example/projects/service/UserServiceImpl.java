@@ -8,13 +8,13 @@ import java.sql.SQLException;
 import java.util.List;
 
 public class UserServiceImpl implements UserService {
-    private UserDao dao = UserDaoFactory.getUserDAO();
-    private static UserService service;
-    public static  UserService getService(){
-        if(service == null){
-            service = new UserServiceImpl();
-        }
-        return service;
+    private UserDao dao = UserDaoFactory.getInstance().getDao();
+    private static UserService ourInstance = new UserServiceImpl();
+    private UserServiceImpl(){
+
+    }
+    public static UserService getInstance(){
+        return ourInstance;
     }
 
     @Override
