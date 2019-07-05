@@ -12,7 +12,10 @@
 </head>
 <body>
 <h1>Welcome</h1>
-<a href="/login">Log IN</a>
-<a href="/signup">Sign UP</a>
+<form action="/login" method="post">
+    <label>Login:<input type="text" name="login"></label><br>
+    <label>Password:<input type="password" name="password"></label><br>
+    <input type="submit" value="Log IN">
+</form>
 </body>
 </html>

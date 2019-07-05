@@ -30,12 +30,7 @@ public class UserJdbcDaoImpl implements UserDao {
             preparedStatement.setString(1, user.getName());
             preparedStatement.setString(2, user.getPassword());
             preparedStatement.setString(3, user.getLogin());
-            if(this.getUserByLogin("admin")== null){
-                preparedStatement.setString(4, "admin");
-            }
-            else {
-                preparedStatement.setString(4, "user");
-            }
+            preparedStatement.setString(4, user.getRole());
             preparedStatement.executeUpdate();
             preparedStatement.close();
 
@@ -108,11 +103,12 @@ public class UserJdbcDaoImpl implements UserDao {
 
     @Override
     public void updateUser(User user) throws SQLException {
-            PreparedStatement preparedStatement = connection.prepareStatement("UPDATE users set name = ?, password = ?, login = ? WHERE id = ?");
+            PreparedStatement preparedStatement = connection.prepareStatement("UPDATE users set name = ?, password = ?, login = ?, role = ? WHERE id = ?");
             preparedStatement.setString(1, user.getName());
             preparedStatement.setString(2, user.getPassword());
             preparedStatement.setString(3, user.getLogin());
-            preparedStatement.setLong(4, user.getId());
+            preparedStatement.setString(4, user.getRole());
+            preparedStatement.setLong(5, user.getId());
             preparedStatement.executeUpdate();
             preparedStatement.close();
     }
@@ -134,4 +130,9 @@ public class UserJdbcDaoImpl implements UserDao {
     public String toString() {
         return "You are using JDBC";
     }
+
+   /* public static void main(String[] args) {
+        UserDao dao = new UserJdbcDaoImpl();
+        System.out.println(dao.getUserByLogin("slava"));
+    }*/
 }
