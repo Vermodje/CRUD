@@ -50,7 +50,6 @@
         </tr>
         </c:forEach>
     </table>
-    <span><c:out value="${dao.toString()}"></c:out></span>
 </div>
 </body>
 

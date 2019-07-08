@@ -1,27 +1,24 @@
 package com.example.projects.servlet;
 
-import com.example.projects.service.UserService;
-import com.example.projects.service.UserServiceImpl;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
-@WebServlet(urlPatterns = "/users")
-public class UserServlet extends HttpServlet {
-    private UserService service = UserServiceImpl.getInstance();
 
+@WebServlet("/home")
+public class HomeServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        req.setAttribute("users", service.getAllUsers());
-        //req.setAttribute("dao", service.getDAO());
-        getServletContext().getRequestDispatcher("/admin.jsp").forward(req, resp);
+        resp.sendRedirect("/login");
     }
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
+        super.doGet(req, resp);
     }
+
+
 }
