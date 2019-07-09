@@ -8,7 +8,7 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
 @WebFilter("/home")
-public class LoginFilter implements Filter {
+public class AuthFilter implements Filter {
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
 
@@ -16,15 +16,18 @@ public class LoginFilter implements Filter {
 
     @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
-        HttpServletRequest req = (HttpServletRequest) request;
-        HttpServletResponse resp = (HttpServletResponse) response;
-        HttpSession session = req.getSession(false);
-        if (session == null || ((String) session.getAttribute("username")) == null) {
-            req.getServletContext().getRequestDispatcher("/index.jsp").forward(req, resp);
-        }
-        chain.doFilter(request, response);
-    }
 
+        HttpServletResponse resp = (HttpServletResponse) response;
+        HttpServletRequest req = (HttpServletRequest) request;
+        HttpSession session = req.getSession(false);
+        if(session == null){
+            resp.sendRedirect("/index.jsp");
+        }
+        else
+        {
+            resp.sendRedirect("/login");
+        }
+    }
     @Override
     public void destroy() {
 
