@@ -43,8 +43,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/example/projects/filter/AuthFilter.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="251">
-              <caret line="17" column="132" selection-start-line="17" selection-start-column="132" selection-end-line="17" selection-end-column="132" />
+            <state relative-caret-position="306">
+              <caret line="18" column="40" selection-start-line="18" selection-start-column="40" selection-end-line="18" selection-end-column="40" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -333,11 +333,11 @@
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="E:\Users\Kancnelson\Desktop\Git\CRUD\NewCRUD\src\main\webapp\admin" />
       <recent name="E:\Users\Kancnelson\Desktop\Git\CRUD\NewCRUD\src\main\webapp" />
       <recent name="E:\Users\Kancnelson\Desktop\Git\CRUD\NewCRUD\src\main\webapp\WEB-INF" />
       <recent name="E:\Users\Kancnelson\Desktop\Git\CRUD\NewCRUD\src\main\webapp\WEB-INF\jsp" />
       <recent name="E:\Users\Kancnelson\Desktop\Git\CRUD\NewCRUD\src\main" />
-      <recent name="E:\Users\Kancnelson\Desktop\Git\CRUD\NewCRUD\src\main\java\resources" />
     </key>
     <key name="CreateClassDialog.RecentsKey">
       <recent name="com.example.projects.jdbcDao" />
@@ -492,12 +492,12 @@
       <workItem from="1562568928408" duration="680000" />
       <workItem from="1562571718991" duration="14287000" />
       <workItem from="1562656320343" duration="19885000" />
-      <workItem from="1562739310080" duration="14598000" />
+      <workItem from="1562739310080" duration="15246000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="132313000" />
+    <option name="totallyTimeSpent" value="132961000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
@@ -745,7 +745,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/admin.jsp">
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/admin/admin.jsp">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="867">
           <caret line="51" column="12" selection-start-line="51" selection-start-column="12" selection-end-line="51" selection-end-column="12" />
@@ -833,8 +833,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/example/projects/filter/AuthFilter.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="251">
-          <caret line="17" column="132" selection-start-line="17" selection-start-column="132" selection-end-line="17" selection-end-column="132" />
+        <state relative-caret-position="306">
+          <caret line="18" column="40" selection-start-line="18" selection-start-column="40" selection-end-line="18" selection-end-column="40" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
