@@ -35,7 +35,7 @@ public class UpdateServlet extends HttpServlet {
             RequestDispatcher dispatcher = req.getRequestDispatcher("/error.jsp");
             dispatcher.forward(req, resp);
         }
-        resp.sendRedirect("/users");
+        resp.sendRedirect("/admin");
     }
 }
 

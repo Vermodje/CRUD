@@ -9,15 +9,13 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-@WebServlet(urlPatterns = "/users")
+@WebServlet(urlPatterns = "/user")
 public class UserServlet extends HttpServlet {
     private UserService service = UserServiceImpl.getInstance();
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        req.setAttribute("users", service.getAllUsers());
-        //req.setAttribute("dao", service.getDAO());
-        getServletContext().getRequestDispatcher("/admin.jsp").forward(req, resp);
+        req.getRequestDispatcher("user.jsp").forward(req, resp);
     }
 
     @Override

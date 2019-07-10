@@ -14,14 +14,15 @@ public class AuthFilter implements Filter {
         HttpServletRequest req = (HttpServletRequest) request;
         HttpServletResponse resp = (HttpServletResponse) response;
         HttpSession session = req.getSession(false);
-        boolean a = session != null || session.getAttribute("user") != null;
+        boolean a = session != null && session.getAttribute("user") != null;
         boolean b = req.getRequestURI().equalsIgnoreCase(req.getContextPath() + "/login");
        if(a || b){
-           resp.sendRedirect("/login");
+           chain.doFilter(request, response);
 
        }
        else {
-           chain.doFilter(request, response);
+           resp.sendRedirect("/login");
+
        }
     }
 }

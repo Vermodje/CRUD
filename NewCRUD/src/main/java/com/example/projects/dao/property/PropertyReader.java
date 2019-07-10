@@ -18,7 +18,7 @@ public class PropertyReader {
         property = readProperties("config.properties");
     }
 
-    private static String readProperties(String path) {
+    private  String readProperties(String path) {
         Properties properties = new Properties();
         try (InputStream in = UserDaoFactory.class.getClassLoader().getResourceAsStream(path)) {
             properties.load(in);
