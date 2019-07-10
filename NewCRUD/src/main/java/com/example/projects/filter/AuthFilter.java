@@ -10,16 +10,18 @@ import java.io.IOException;
 @WebFilter("/*")
 public class AuthFilter implements Filter {
     @Override
-    public void init(FilterConfig filterConfig) throws ServletException {
-
-    }
-
-    @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
-        chain.doFilter(request, response);
-    }
-    @Override
-    public void destroy() {
+        HttpServletRequest req = (HttpServletRequest) request;
+        HttpServletResponse resp = (HttpServletResponse) response;
+        HttpSession session = req.getSession(false);
+        boolean a = session != null || session.getAttribute("user") != null;
+        boolean b = req.getRequestURI().equalsIgnoreCase(req.getContextPath() + "/login");
+       if(a || b){
+           resp.sendRedirect("/login");
 
+       }
+       else {
+           chain.doFilter(request, response);
+       }
     }
 }
