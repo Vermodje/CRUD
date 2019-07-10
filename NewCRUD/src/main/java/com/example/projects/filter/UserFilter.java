@@ -10,9 +10,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+
 @WebFilter("/login")
 public class UserFilter implements Filter {
     private UserService service = UserServiceImpl.getInstance();
+
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
 
@@ -24,31 +26,37 @@ public class UserFilter implements Filter {
         HttpServletRequest req = (HttpServletRequest) request;
         HttpSession session = req.getSession(false);
         String login = (String) session.getAttribute("login");
-        if(login == null){
+        String userrole = (String) session.getAttribute("role");
+        if (login == null) {
             String userLogin = req.getParameter("login");
             String userPassword = req.getParameter("password");
             User user = service.getUserByLogin(userLogin);
-            if(user != null && user.getPassword().equals(userPassword)){
+            if (user != null && user.getPassword().equals(userPassword)) {
                 session.setAttribute("login", userLogin);
                 session.setAttribute("user", user);
+                String role = user.getRole();
+                session.setAttribute("role", role);
                 System.out.println("Attr was added");
-            }
-            else {
+                if (role.equals("user")) {
+                    resp.sendRedirect("/login/user");
+                } else {
+                    resp.sendRedirect("/login/admin");
+                }
+
+            } else {
                 resp.sendRedirect("/home");
                 System.out.println("No Authofication");
             }
 
 
+        } else if (userrole.equals("user")) {
+            resp.sendRedirect("/login/user");
+        } else if (userrole.equals("admin")) {
+            resp.sendRedirect("/login/admin");
         }
-        else {
-            System.out.println(login);
-            resp.sendRedirect("/test");
-        }
-
 
 
     }
-
 
 
     @Override

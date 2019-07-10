@@ -20,7 +20,7 @@ public class AuthFilter implements Filter {
         HttpServletResponse resp = (HttpServletResponse) response;
         HttpServletRequest req = (HttpServletRequest) request;
         HttpSession session = req.getSession(false);
-        if(session == null){
+        if(session == null || (String)session.getAttribute("login") == null){
             resp.sendRedirect("/index.jsp");
         }
         else
