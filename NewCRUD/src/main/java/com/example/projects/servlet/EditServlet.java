@@ -23,8 +23,8 @@ public class EditServlet extends HttpServlet {
             RequestDispatcher dispatcher = req.getRequestDispatcher("/admin/edit-user.jsp");
             dispatcher.forward(req, resp);
         } catch (NumberFormatException e) {
-            e.printStackTrace();
-            resp.sendRedirect("/admin");
+            req.setAttribute("error", "User on this ID is not found");
+            req.getRequestDispatcher("/error/error.jsp").forward(req, resp);
         }
     }
 

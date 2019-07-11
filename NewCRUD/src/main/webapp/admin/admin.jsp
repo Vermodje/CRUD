@@ -22,10 +22,10 @@
     <label>Your Login:<input type="text" name="login"></label><br>
     <label>Password:<input type="password" name="password"></label><br>
     <label>User role:<select size="2" name="role">
-        <option value="user">User</option>
-        <option value="admin">Admin</option>
-    </select>
-    </label>
+    <option value="user">User</option>
+    <option value="admin">Admin</option>
+</select>
+</label>
     <input type="submit" value="Insert">
 </form>
 <div class="container">
