@@ -12,6 +12,11 @@
     <label>Your Name:<input type="text" name="name" value="${user.name}"></label><br>
     <label>Your Login:<input type="text" name="login" value="${user.login}"></label><br>
     <label>Password:<input type="password" name="password" value="${user.password}"></label><br>
+    <label>User role:<select size="2" name="role">
+        <option value="user">User</option>
+        <option value="admin">Admin</option>
+    </select>
+    </label><br>
     <input type="submit" value="Update">
 </form>
 </body>

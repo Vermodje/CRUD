@@ -10,9 +10,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet (urlPatterns = "/delete")
+@WebServlet(urlPatterns = "/delete")
 public class DeleteServlet extends HttpServlet {
     private UserService service = UserServiceImpl.getInstance();
+
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         Long id = Long.valueOf(req.getParameter("id"));
@@ -20,9 +21,4 @@ public class DeleteServlet extends HttpServlet {
         resp.sendRedirect("/admin");
     }
 
-    @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        super.doGet(req, resp);
-
-    }
 }

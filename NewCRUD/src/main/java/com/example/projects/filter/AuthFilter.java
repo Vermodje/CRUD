@@ -16,13 +16,12 @@ public class AuthFilter implements Filter {
         HttpSession session = req.getSession(false);
         boolean a = session != null && session.getAttribute("user") != null;
         boolean b = req.getRequestURI().equalsIgnoreCase(req.getContextPath() + "/login");
-       if(a || b){
-           chain.doFilter(request, response);
+        if (a || b) {
+            chain.doFilter(request, response);
 
-       }
-       else {
-           resp.sendRedirect("/login");
+        } else {
+            resp.sendRedirect("/login");
 
-       }
+        }
     }
 }

@@ -13,10 +13,11 @@ import java.io.IOException;
 @WebServlet(urlPatterns = "/admin")
 public class AdminServlet extends HttpServlet {
     private UserService service = UserServiceImpl.getInstance();
+
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         req.setAttribute("users", service.getAllUsers());
-       req.getRequestDispatcher("/admin/admin.jsp").forward(req, resp);
+        req.getRequestDispatcher("/admin/admin.jsp").forward(req, resp);
     }
 
 }

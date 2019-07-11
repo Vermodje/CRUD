@@ -7,6 +7,7 @@ import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+
 @WebFilter("/admin")
 public class AdminFilter implements Filter {
     @Override
@@ -14,10 +15,10 @@ public class AdminFilter implements Filter {
         HttpServletRequest req = (HttpServletRequest) request;
         HttpServletResponse resp = (HttpServletResponse) response;
         User user = (User) req.getSession().getAttribute("user");
-        if(("admin").equals(user.getRole())){
+        if (("admin").equals(user.getRole())) {
             chain.doFilter(request, response);
         } else {
-           resp.sendRedirect("/login");
+            resp.sendRedirect("/login");
         }
     }
 }

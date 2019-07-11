@@ -18,11 +18,6 @@ public class UpdateServlet extends HttpServlet {
     private UserService service = UserServiceImpl.getInstance();
 
     @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        super.doPost(req, resp);
-    }
-
-    @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         Long id = Long.valueOf((req.getParameter("id")));
         String name = req.getParameter("name");
@@ -32,8 +27,8 @@ public class UpdateServlet extends HttpServlet {
         try {
             service.edit(new User(id, name, password, login, role));
         } catch (SQLException e) {
-            RequestDispatcher dispatcher = req.getRequestDispatcher("/error.jsp");
-            dispatcher.forward(req, resp);
+            req.setAttribute("error", "User with the same login already exists");
+            req.getRequestDispatcher("/error/error.jsp").forward(req, resp);
         }
         resp.sendRedirect("/admin");
     }

@@ -21,11 +21,16 @@
     <label>Your Name:<input type="text" name="name"></label><br>
     <label>Your Login:<input type="text" name="login"></label><br>
     <label>Password:<input type="password" name="password"></label><br>
+    <label>User role:<select size="2" name="role">
+        <option value="user">User</option>
+        <option value="admin">Admin</option>
+    </select>
+    </label>
     <input type="submit" value="Insert">
 </form>
 <div class="container">
 
-    <table border="1"  cellpadding="5">
+    <table border="1" cellpadding="5">
         <caption style="font-size: 40px;">All Users</caption>
         <tr>
             <th>Id</th>
@@ -37,17 +42,17 @@
         </tr>
 
         <c:forEach var="user" items="${users}">
-        <tr>
-            <td style="text-align: center"><c:out value="${user.id}"></c:out> </td>
-            <td style="text-align: center"><c:out value="${user.name}"></c:out></td>
-            <td style="text-align: center"><c:out value="${user.password}"></c:out></td>
-            <td style="text-align: center"><c:out value="${user.login}"></c:out></td>
-            <td style="text-align: center"><c:out value="${user.role}"></c:out></td>
-            <td>
-                <a href="/edit?id=<c:out value="${user.id}"></c:out>">Edit</a>
-                <a href="/delete?id=<c:out value="${user.id}"></c:out>">Delete</a>
-            </td>
-        </tr>
+            <tr>
+                <td style="text-align: center"><c:out value="${user.id}"></c:out></td>
+                <td style="text-align: center"><c:out value="${user.name}"></c:out></td>
+                <td style="text-align: center"><c:out value="${user.password}"></c:out></td>
+                <td style="text-align: center"><c:out value="${user.login}"></c:out></td>
+                <td style="text-align: center"><c:out value="${user.role}"></c:out></td>
+                <td>
+                    <a href="/edit?id=<c:out value="${user.id}"></c:out>">Edit</a>
+                    <a href="/delete?id=<c:out value="${user.id}"></c:out>">Delete</a>
+                </td>
+            </tr>
         </c:forEach>
     </table>
 </div>

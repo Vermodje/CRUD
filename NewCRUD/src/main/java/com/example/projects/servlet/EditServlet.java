@@ -14,21 +14,18 @@ import java.io.IOException;
 @WebServlet(urlPatterns = "/edit")
 public class EditServlet extends HttpServlet {
     private UserService service = UserServiceImpl.getInstance();
+
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         try {
             Long id = Long.valueOf(req.getParameter("id"));
-            req.setAttribute("user",  service.getUserById(id));
+            req.setAttribute("user", service.getUserById(id));
             RequestDispatcher dispatcher = req.getRequestDispatcher("/admin/edit-user.jsp");
             dispatcher.forward(req, resp);
-        } catch (NumberFormatException e){
+        } catch (NumberFormatException e) {
             e.printStackTrace();
             resp.sendRedirect("/admin");
         }
     }
 
-    @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        super.doGet(req, resp);
-    }
 }

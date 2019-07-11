@@ -11,10 +11,7 @@
     <title>Title</title>
 </head>
 <body>
-<h1>Ошибка</h1>
-<p>Пользователь с таким логином уже существует<br>
-    пожалуйста зарегистрируйтесь снова
-</p>
-<a href="/signup">SignUp</a>
+<span style="color: red;"><%=request.getAttribute("error").toString()%></span><br>
+<a href="/admin">Back</a>
 </body>
 </html>

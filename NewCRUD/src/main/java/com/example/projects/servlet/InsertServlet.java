@@ -16,10 +16,6 @@ import java.sql.SQLException;
 @WebServlet(urlPatterns = "/insert")
 public class InsertServlet extends HttpServlet {
     private UserService service = UserServiceImpl.getInstance();
-    @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-       super.doPost(req, resp);
-    }
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -30,9 +26,9 @@ public class InsertServlet extends HttpServlet {
         try {
             service.add(new User(name, password, login, role));
         } catch (SQLException e) {
-            RequestDispatcher dispatcher = req.getRequestDispatcher("/error.jsp");
-            dispatcher.forward(req, resp);
+            req.setAttribute("error", "User with the same login already exists");
+            req.getRequestDispatcher("/error/error.jsp").forward(req, resp);
         }
-        resp.sendRedirect("/users");
+        resp.sendRedirect("/admin");
     }
 }
